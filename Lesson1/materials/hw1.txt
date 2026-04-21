@@ -1,0 +1,32 @@
+# Q1. 环境配置使用 （掌握远程服务器连接，以及conda虚拟环境配置方法）
+
+# Q2. 使用torch.compile对简单的程序/函数进行编译执行
+- 测试一：运行python case1.py指令，在tmp文件夹下查找对应的生成triton脚本，注意在每次运行前要清空torchinductor文件夹
+- 测试二：运行TORCH_COMPILE_DEBUG=1 python case1.py, 可以查看更多调试信息
+
+# Q3. 查看简单程序/函数编译过程中的中间过程/表示，并进行对比查看
+
+- 编译过程：Input Code --> FX Graph IR --> ATen FX Graph IR --> Define-by-run IR --> Scheduling/Fusion Output --> Triton Output --> Wrapper
+注：这里的FX(Functional Transformation) Graph指代无环有向图（DAG）
+
+- 测试1：运行TORCH_LOGS="dynamo,aot,+inductor,bytecode,graph,graph_code,aot_graphs,aot_joint_graph,schedule,fusion,output_code" python case1.py &> case1.log
+- 由于例子过于简单，所以算子无需进行融合，已经在Define-by-run IR步骤将sine, cosine, add这几个operator进行了融合
+
+- 测试2：运行TORCH_LOGS="dynamo,aot,+inductor,bytecode,graph,graph_code,aot_graphs,aot_joint_graph,schedule,fusion,output_code" python case2.py &> case2.log
+- 在这个例子中，sceduling/fusion都有执行
+
+# Q4. 使用Torchbench运行模型生成Triton Kernel，并尝试不同选项的功能 （包含了安装Torchbench）
+
+
+
+# Q5. 简述一下PyTorch、Inductor、Triton三者间的关系，搜集资料，了解整理一下目前哪些场景下使用了Triton算子
+    PyTorch（用户侧框架）
+        ↓ torch.compile / TorchDynamo 捕获计算图
+    TorchInductor（编译后端）
+        ↓ 图优化、算子融合，生成 Triton 代码
+    Triton（GPU Kernel DSL + 编译器）
+        ↓ 编译为 PTX / 机器码
+    GPU 硬件
+
+# Q6. 简述一下用TorchInductor生成triton的优势
+    
