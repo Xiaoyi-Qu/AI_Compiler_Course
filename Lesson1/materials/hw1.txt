@@ -18,7 +18,6 @@
 # Q4. 使用Torchbench运行模型生成Triton Kernel，并尝试不同选项的功能 （包含了安装Torchbench）
 
 
-
 # Q5. 简述一下PyTorch、Inductor、Triton三者间的关系，搜集资料，了解整理一下目前哪些场景下使用了Triton算子
     PyTorch（用户侧框架）
         ↓ torch.compile / TorchDynamo 捕获计算图
@@ -28,5 +27,12 @@
         ↓ 编译为 PTX / 机器码
     GPU 硬件
 
-# Q6. 简述一下用TorchInductor生成triton的优势
+# Q6. 简述一下用TorchInductor生成“triton”的优势
+    - 优势一. 相较于其他编译器，有一些性能优势
+    - 优势二. 支持动态shape(感知内存和寄存器的压力)
+    - 优势三. 模板(templates)支持
+    - 优势四. Triton BLOCK级别控制流的抽象特性自动生成Triton Kernel，避免因每个 kernel 只启动少量的线程块而导致GPU占用率较低
+
+三个问题已经在微信上留言了
+
     
