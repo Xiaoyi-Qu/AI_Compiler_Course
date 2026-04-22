@@ -1,3 +1,6 @@
 性能分析工具
 - torch.profiler()
 - what else?
+
+Q1. 整网运行生成Kernel文件和profiler追踪文件
+
