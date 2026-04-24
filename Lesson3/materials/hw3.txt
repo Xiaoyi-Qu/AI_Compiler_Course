@@ -1,0 +1,17 @@
+1 安装Triton Puzzles Lite项目
+Done！
+
+2 分析并运行Demo1-4的示例，掌握Triton常用API
+Done！
+
+3 尝试编写Puzzle1至Puzzle5的算子并运行
+Done！
+
+4（可选）尝试编写Puzzle6至Puzzle12的算子并运行
+
+5 对比自己编写的算子和前面课程实践中PyTorch Inductor自动生成的算子的异同，
+ （可选：与FlagGems算子库中的算子进行对比）
+  - 思考一下如何对比比较合适？
+
+6 以简单的矩阵乘算子为例，结合参数配置打印调试选项，尝试运行时传参、
+  @triton.autotune、@triton.heuristics等方式对算子中关键参数调整对算子性能的影响
